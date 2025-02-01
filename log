@@ -1,0 +1,331 @@
+/home/xpolas/banska/UASS/projekt/project/cmake-build-debug/project
+Loading static biological network...
+20452 edges loaded
+Number of nodes: 2004
+Number of edges: 20452
+Density: 0.0101903
+Average edge weight: 2.5789
+Largest connected component size: 1999
+Degree distribution (degree -> count):
+  1 -> 197
+  2 -> 124
+  3 -> 118
+  4 -> 76
+  5 -> 100
+  6 -> 105
+  7 -> 67
+  8 -> 72
+  9 -> 51
+  10 -> 68
+  11 -> 52
+  12 -> 39
+  13 -> 47
+  14 -> 35
+  15 -> 48
+  16 -> 27
+  17 -> 35
+  18 -> 32
+  19 -> 33
+  20 -> 20
+  21 -> 32
+  22 -> 42
+  23 -> 26
+  24 -> 32
+  25 -> 15
+  26 -> 18
+  27 -> 16
+  28 -> 20
+  29 -> 20
+  30 -> 10
+  31 -> 14
+  32 -> 12
+  33 -> 22
+  34 -> 11
+  35 -> 10
+  36 -> 14
+  37 -> 13
+  38 -> 10
+  39 -> 11
+  40 -> 14
+  41 -> 7
+  42 -> 12
+  43 -> 11
+  44 -> 12
+  45 -> 9
+  46 -> 4
+  47 -> 12
+  48 -> 7
+  49 -> 7
+  50 -> 7
+  ... (truncated)
+Graph saved to file: bio_graph.txt
+
+
+Loading temporal social network...
+59835 edges loaded
+Temporal Graph Summary:
+ - Number of nodes: 1899
+ - Number of edges: 13838
+ - Time range: 1082040961 - 1098777142
+Graph saved to file: social_graph.txt
+
+
+Generating snapshots...
+
+Snapshot 1:
+Number of nodes: 1086
+Number of edges: 5851
+Density: 0.00993117
+Average edge weight: 1
+Largest connected component size: 1082
+Degree distribution (degree -> count):
+  1 -> 234
+  2 -> 142
+  3 -> 99
+  4 -> 75
+  5 -> 56
+  6 -> 37
+  7 -> 38
+  8 -> 32
+  9 -> 21
+  10 -> 29
+  11 -> 29
+  12 -> 22
+  13 -> 18
+  14 -> 13
+  15 -> 21
+  16 -> 12
+  17 -> 9
+  18 -> 9
+  19 -> 13
+  20 -> 6
+  21 -> 10
+  22 -> 8
+  23 -> 16
+  24 -> 7
+  25 -> 8
+  26 -> 9
+  27 -> 8
+  28 -> 3
+  29 -> 8
+  30 -> 4
+  31 -> 5
+  32 -> 6
+  33 -> 5
+  34 -> 6
+  35 -> 4
+  36 -> 2
+  37 -> 1
+  38 -> 1
+  39 -> 3
+  40 -> 3
+  41 -> 3
+  42 -> 1
+  45 -> 2
+  46 -> 4
+  47 -> 3
+  48 -> 1
+  49 -> 2
+  50 -> 2
+  51 -> 4
+  52 -> 2
+  ... (truncated)
+
+Snapshot 2:
+Number of nodes: 1371
+Number of edges: 6981
+Density: 0.00743344
+Average edge weight: 1
+Largest connected component size: 1363
+Degree distribution (degree -> count):
+  1 -> 304
+  2 -> 168
+  3 -> 98
+  4 -> 94
+  5 -> 82
+  6 -> 50
+  7 -> 48
+  8 -> 35
+  9 -> 36
+  10 -> 40
+  11 -> 46
+  12 -> 36
+  13 -> 23
+  14 -> 29
+  15 -> 22
+  16 -> 18
+  17 -> 22
+  18 -> 12
+  19 -> 14
+  20 -> 17
+  21 -> 15
+  22 -> 10
+  23 -> 3
+  24 -> 4
+  25 -> 10
+  26 -> 5
+  27 -> 8
+  28 -> 17
+  29 -> 9
+  30 -> 8
+  31 -> 5
+  32 -> 9
+  33 -> 5
+  34 -> 1
+  35 -> 5
+  36 -> 3
+  37 -> 3
+  38 -> 3
+  39 -> 1
+  40 -> 3
+  42 -> 3
+  43 -> 2
+  44 -> 1
+  45 -> 1
+  46 -> 3
+  47 -> 1
+  48 -> 2
+  49 -> 3
+  50 -> 1
+  51 -> 3
+  ... (truncated)
+
+Snapshot 3:
+Number of nodes: 623
+Number of edges: 1069
+Density: 0.00551733
+Average edge weight: 1
+Largest connected component size: 593
+Degree distribution (degree -> count):
+  1 -> 288
+  2 -> 102
+  3 -> 70
+  4 -> 44
+  5 -> 30
+  6 -> 24
+  7 -> 15
+  8 -> 8
+  9 -> 8
+  10 -> 9
+  11 -> 2
+  12 -> 4
+  13 -> 4
+  14 -> 2
+  15 -> 1
+  16 -> 1
+  17 -> 1
+  18 -> 2
+  20 -> 1
+  21 -> 1
+  23 -> 1
+  24 -> 1
+  28 -> 1
+  89 -> 1
+  95 -> 1
+  101 -> 1
+
+Snapshot 4:
+Number of nodes: 406
+Number of edges: 642
+Density: 0.00780879
+Average edge weight: 1
+Largest connected component size: 356
+Degree distribution (degree -> count):
+  1 -> 194
+  2 -> 68
+  3 -> 40
+  4 -> 31
+  5 -> 17
+  6 -> 10
+  7 -> 7
+  8 -> 11
+  9 -> 6
+  10 -> 3
+  11 -> 1
+  12 -> 2
+  13 -> 4
+  14 -> 1
+  15 -> 1
+  16 -> 2
+  17 -> 2
+  18 -> 1
+  20 -> 1
+  27 -> 1
+  30 -> 1
+  31 -> 1
+  36 -> 1
+
+Snapshot 5:
+Number of nodes: 410
+Number of edges: 628
+Density: 0.00749001
+Average edge weight: 1
+Largest connected component size: 385
+Degree distribution (degree -> count):
+  1 -> 221
+  2 -> 59
+  3 -> 46
+  4 -> 24
+  5 -> 7
+  6 -> 10
+  7 -> 11
+  8 -> 3
+  9 -> 4
+  10 -> 6
+  11 -> 6
+  12 -> 2
+  13 -> 1
+  14 -> 1
+  15 -> 1
+  16 -> 1
+  19 -> 3
+  25 -> 1
+  46 -> 1
+  55 -> 1
+  60 -> 1
+
+Snapshot 6:
+Number of nodes: 327
+Number of edges: 458
+Density: 0.00859271
+Average edge weight: 1
+Largest connected component size: 301
+Degree distribution (degree -> count):
+  1 -> 163
+  2 -> 74
+  3 -> 29
+  4 -> 13
+  5 -> 4
+  6 -> 9
+  7 -> 10
+  8 -> 3
+  9 -> 6
+  10 -> 6
+  11 -> 2
+  12 -> 2
+  13 -> 1
+  14 -> 1
+  16 -> 1
+  23 -> 2
+  49 -> 1
+
+Snapshot 7:
+Number of nodes: 200
+Number of edges: 179
+Density: 0.00899497
+Average edge weight: 1
+Largest connected component size: 145
+Degree distribution (degree -> count):
+  1 -> 144
+  2 -> 34
+  3 -> 12
+  4 -> 2
+  5 -> 2
+  6 -> 1
+  7 -> 2
+  8 -> 1
+  26 -> 1
+  38 -> 1
+
+Process finished with exit code 0
+

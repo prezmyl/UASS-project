@@ -11,16 +11,17 @@
 
 class TemporalGraph : public Graph {
 private:
-    std::vector<std::tuple<int, int, long>> edges; // node1, node2, timestep
-    std::map<int, Graph> snapshots;
-    long timeRangeStart, timeRangeEnd;
+    std::vector<std::tuple<int, int, double, long>> edges; // node1, node2, timestep
+    std::map<int, Graph> snapshots; //mapping snaposthos to subgraphs
+    long timeRangeStart, timeRangeEnd; //min and max timestep in database
 
 public:
     TemporalGraph();
-    void addTemporalEdge(int u, int v, long timestamp);
+    void addTemporalEdge(int u, int v, double weight, long timestamp);
+    Graph getSnapshot(int startTime, int endTime) const;
     void printTemporalGraphSummary() const;
-    void createSnapshots(int interval);
-    TemporalGraph getSnapshot(int startTime, int endTime) const;
+    void printSnapshotSummary() const;
+    std::vector<Graph> generateSnapshots(int intervalSize) const;
 };
 
 

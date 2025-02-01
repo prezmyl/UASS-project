@@ -30,15 +30,16 @@ protected:
 
 public:
     Graph();
-    void addEdge(int u, int v, double weight = 1.0);
-    void printGraphSummary() const;
-    void saveToFile(const std::string &filename) const;
+    void addEdge(int u, int v, double weight);
     int numNodes() const;
     int numEdges() const;
     double density() const;
+    double averageEdgeWeight() const;
     int bfsComponentSize(int start, std::unordered_set<int> &visited) const;
     int largestConnectedComponentSize() const;
     std::map<int, int> degreeDistribution() const;
+    void printGraphSummary() const;
+    void saveToFile(const std::string &filename) const;
 
 
 };

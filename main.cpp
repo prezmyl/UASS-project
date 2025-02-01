@@ -15,10 +15,17 @@ int main() {
     socialGraph.printTemporalGraphSummary();
     socialGraph.saveToFile("social_graph.txt");
 
-    // Now create snapshots and analyze them separately
-    std::cout << "\nCreating temporal snapshots...\n";
-    socialGraph.createSnapshots(3600 * 24 * 30); // Monthly snapshots
-    socialGraph.printTemporalGraphSummary();
+    // Dividing temporal graph into snapshots
+    std::cout << "\nGenerating snapshots...\n";
+   // socialGraph.createSnapshots(10);
+
+    // Analyzing snapshots
+    int count = 0;
+    for (const auto& snapshot : socialGraph.generateSnapshots(3600 * 24 * 30)) {
+        std::cout << "\nSnapshot " << count + 1 << ":\n";
+        snapshot.printGraphSummary();
+        count++;
+    }
 
     return 0;
 }

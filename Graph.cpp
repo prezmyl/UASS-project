@@ -13,57 +13,7 @@ void Graph::addEdge(int u, int v, double weight) {
     adjacencyList[u].insert(v);
     adjacencyList[v].insert(u);
     edgeWeights[{u, v}] = weight;
-    edgeWeights[{v, u}] = weight;
-}
-
-void Graph::printGraphSummary() const
-{
-    // 1) Basic checks
-    int n = numNodes();
-    if (n == 0) {
-        std::cout << "The graph is empty.\n";
-        return;
-    }
-
-    // 2) Print basic stats
-    int e = numEdges();
-    std::cout << "Number of nodes: " << n << std::endl;
-    std::cout << "Number of edges: " << e << std::endl;
-    std::cout << "Density: " << density() << std::endl;
-
-    // 3) Largest connected component
-    int lcc = largestConnectedComponentSize();
-    std::cout << "Largest connected component size: " << lcc << std::endl;
-
-    // 4) Degree distribution
-    auto dist = degreeDistribution();
-    // If the graph is big, limit the line
-    std::cout << "Degree distribution (degree -> count):" << std::endl;
-    int counter = 0;
-    for (auto& [deg, cnt] : dist) {
-        std::cout << "  " << deg << " -> " << cnt << std::endl;
-        counter++;
-        if (counter >= Constants::limitLinesToPrint) { //limits line to print
-            std::cout << "  ... (truncated)\n";
-            break;
-        }
-    }
-}
-
-void Graph::saveToFile(const std::string& filename) const {
-    std::ofstream file(filename);
-    if (!file) {
-        std::cerr << "Error: Unable to open file " << filename << std::endl;
-        return;
-    }
-
-    for (const auto& node : adjacencyList) {
-        for (int neighbor : node.second) {
-            file << node.first << " " << neighbor << "\n";
-        }
-    }
-    file.close();
-    std::cout << "Graph saved to file: " << filename << std::endl << std::endl;
+    edgeWeights[{v, u}] = weight; //undirected
 }
 
 int Graph::numNodes() const {
@@ -82,7 +32,16 @@ double Graph::density() const {
     int n = numNodes();
     if (n <= 1) return 0.0;
     int e = numEdges();
-    return static_cast<double>(e) / (0.5 * n * (n-1)); //density unoriented graph
+    return static_cast<double>(e) / (0.5 * n * (n-1)); //density undirected graph
+}
+
+double Graph::averageEdgeWeight() const {
+    if (edgeWeights.empty()) return 0.0;
+    double sum = 0.0;
+    for (const auto& [edge, weight] : edgeWeights) {
+        sum += weight;
+    }
+    return sum / edgeWeights.size();
 }
 
 int Graph::bfsComponentSize(int start, std::unordered_set<int> &visited) const {
@@ -125,8 +84,6 @@ int Graph::largestConnectedComponentSize() const {
     return maxSize;
 }
 
-
-
 std::map<int, int> Graph::degreeDistribution() const {
     std::map<int, int> dist;
     for (const auto& [node, neighbors] : adjacencyList) {
@@ -136,6 +93,53 @@ std::map<int, int> Graph::degreeDistribution() const {
     return dist;
 }
 
+void Graph::printGraphSummary() const
+{
+    // 1) Basic checks
+    int n = numNodes();
+    if (n == 0) {
+        std::cout << "The graph is empty.\n";
+        return;
+    }
 
+    // 2) Print basic stats
+    int e = numEdges();
+    std::cout << "Number of nodes: " << n << std::endl;
+    std::cout << "Number of edges: " << e << std::endl;
+    std::cout << "Density: " << density() << std::endl;
+    std::cout << "Average edge weight: " << averageEdgeWeight() <<std::endl;
 
+    // 3) Largest connected component
+    int lcc = largestConnectedComponentSize();
+    std::cout << "Largest connected component size: " << lcc << std::endl;
 
+    // 4) Degree distribution
+    auto dist = degreeDistribution();
+    // If the graph is big, limit the line
+    std::cout << "Degree distribution (degree -> count):" << std::endl;
+    int counter = 0;
+    for (auto& [deg, cnt] : dist) {
+        std::cout << "  " << deg << " -> " << cnt << std::endl;
+        counter++;
+        if (counter >= Constants::limitLinesToPrint) { //limits line to print
+            std::cout << "  ... (truncated)\n";
+            break;
+        }
+    }
+}
+
+void Graph::saveToFile(const std::string& filename) const {
+    std::ofstream file(filename);
+    if (!file) {
+        std::cerr << "Error: Unable to open file " << filename << std::endl;
+        return;
+    }
+
+    for (const auto& node : adjacencyList) {
+        for (int neighbor : node.second) {
+            file << node.first << " " << neighbor << "\n";
+        }
+    }
+    file.close();
+    std::cout << "Graph saved to file: " << filename << std::endl << std::endl;
+}

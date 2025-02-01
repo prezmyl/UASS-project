@@ -32,10 +32,11 @@ TemporalGraph GraphLoader::loadTemporalGraph(const std::string &filename)  {
         std::istringstream iss(line);
         int u, v;
         long timestamp;
+        double weight = 1.0;
         if (!(iss >> u >> v >> timestamp)) {
             continue; // skip wrong line
         }
-        graph.addTemporalEdge(u, v, timestamp);
+        graph.addTemporalEdge(u, v, weight,timestamp);
         count++;
     }
     std::cout << count << " edges loaded" << std::endl;
