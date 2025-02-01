@@ -1,3 +1,0 @@
-/home/xpolas/banska/UASS/projekt/project/cmake-build-debug/CMakeFiles/project.dir
-/home/xpolas/banska/UASS/projekt/project/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/xpolas/banska/UASS/projekt/project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
