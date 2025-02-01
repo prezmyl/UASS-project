@@ -7,11 +7,14 @@
 
 #include <iostream>
 #include <fstream>
+#include <map>
 #include <sstream>
 #include <vector>
 #include <unordered_map>
 #include <set>
+#include <unordered_set>
 #include <utility>
+#include "Constants.h"
 
 struct pair_hash {
     template <typename T1, typename T2>
@@ -30,6 +33,13 @@ public:
     void addEdge(int u, int v, double weight = 1.0);
     void printGraphSummary() const;
     void saveToFile(const std::string &filename) const;
+    int numNodes() const;
+    int numEdges() const;
+    double density() const;
+    int bfsComponentSize(int start, std::unordered_set<int> &visited) const;
+    int largestConnectedComponentSize() const;
+    std::map<int, int> degreeDistribution() const;
+
 
 };
 

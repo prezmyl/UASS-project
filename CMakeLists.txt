@@ -9,4 +9,6 @@ add_executable(project main.cpp
         TemporalGraph.cpp
         TemporalGraph.h
         GraphLoader.cpp
-        GraphLoader.h)
+        GraphLoader.h
+        Graph.cpp
+        Constants.h)
