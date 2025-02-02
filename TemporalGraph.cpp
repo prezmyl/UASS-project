@@ -5,6 +5,7 @@
 #include "TemporalGraph.h"
 
 #include <limits.h>
+#include <sys/stat.h>  // Pro mkdir()
 
 TemporalGraph::TemporalGraph() : timeRangeStart(LONG_MAX), timeRangeEnd(LONG_MIN){}
 
@@ -128,20 +129,45 @@ void TemporalGraph::analyzeTemporalProperties(std::ostream& out1, std::ostream& 
 }
 
 
+
+// Pomocná funkce pro vytvoření složky, pokud neexistuje
+void ensureDirectoryExists(const std::string& dir) {
+    struct stat info;
+    if (stat(dir.c_str(), &info) != 0) {  // Složka neexistuje
+        mkdir(dir.c_str(), 0777);
+    }
+}
+
 void TemporalGraph::analyzeSnapshots(const std::string& dir, long snapshotInterval) const {
+    ensureDirectoryExists(dir);  // ✅ Zajistí existenci složky
+
     for (long start = timeRangeStart; start < timeRangeEnd; start += snapshotInterval) {
         long end = start + snapshotInterval;
         Graph snapshot = getSnapshot(start, end);
 
+        // ✅ Přidání validace snapshotu
+        if (snapshot.numNodes() == 0 || snapshot.numEdges() == 0) {
+            std::cerr << "⚠ Skipping empty snapshot: " << start << " - " << end << "\n";
+            continue;  // Přeskočíme prázdný snapshot
+        }
+
+        // ✅ Správné uložení snapshotu
         std::string snapshotFilename = dir + "/snapshot_" + std::to_string(start) + "_" + std::to_string(end) + ".txt";
         snapshot.saveToFile(snapshotFilename);
 
+        // ✅ Uložení metrik snapshotu
         std::ofstream metricsFile(dir + "/snapshot_" + std::to_string(start) + "_" + std::to_string(end) + "_metrics.txt");
+        if (!metricsFile) {
+            std::cerr << "❌ Error: Cannot open metrics file " << snapshotFilename << "\n";
+            continue;
+        }
         snapshot.analyzeGraph("Snapshot " + std::to_string(start) + " - " + std::to_string(end), std::cout, metricsFile);
         metricsFile.close();
     }
+
     Utils::writeOutput(std::cout, std::cout, "✅ Snapshot metrics saved to " + dir);
 }
+
 
 
 
