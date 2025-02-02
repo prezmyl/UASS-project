@@ -139,6 +139,23 @@ void ensureDirectoryExists(const std::string& dir) {
 }
 
 void TemporalGraph::analyzeSnapshots(const std::string& dir, long snapshotInterval) const {
+    ensureDirectoryExists(dir);
+    std::vector<Graph> snapshots = generateSnapshots(snapshotInterval);  // ✅ Volání generateSnapshots() přímo zde
+
+    for (size_t i = 0; i < snapshots.size(); i++) {
+        long start = timeRangeStart + i * snapshotInterval;
+        long end = start + snapshotInterval;
+
+        std::ofstream metricsFile(dir + "/snapshot_" + std::to_string(start) + "_" + std::to_string(end) + "_metrics.txt");
+        snapshots[i].analyzeGraph("Snapshot " + std::to_string(start) + " - " + std::to_string(end), std::cout, metricsFile);
+        metricsFile.close();
+    }
+
+    Utils::writeOutput(std::cout, std::cout, "✅ Snapshot metrics saved to " + dir);
+}
+
+/*
+void TemporalGraph::analyzeSnapshots(const std::string& dir, long snapshotInterval) const {
     ensureDirectoryExists(dir);  // ✅ Zajistí existenci složky
 
     for (long start = timeRangeStart; start < timeRangeEnd; start += snapshotInterval) {
@@ -166,7 +183,7 @@ void TemporalGraph::analyzeSnapshots(const std::string& dir, long snapshotInterv
     }
 
     Utils::writeOutput(std::cout, std::cout, "✅ Snapshot metrics saved to " + dir);
-}
+}*/
 
 
 
