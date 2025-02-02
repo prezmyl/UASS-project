@@ -8,6 +8,7 @@
 namespace Constants {
     constexpr int limitNumSnaps = 20;
     constexpr int limitLinesToPrint = 50;
+    constexpr  long snapInterval = 3600 * 24 * 10;
 }
 
 #endif //CONSTANTS_H

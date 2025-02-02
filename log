@@ -62,270 +62,590 @@ Graph saved to file: bio_graph.txt
 
 
 Loading temporal social network...
-59835 edges loaded
+⚠️ Ignored duplicate edge: 4 -> 17 at 1098215533
+⚠️ Ignored duplicate edge: 66 -> 61 at 1100113146
+⚠️ Ignored duplicate edge: 61 -> 66 at 1100162046
+⚠️ Ignored duplicate edge: 33 -> 35 at 1100519998
+⚠️ Ignored duplicate edge: 4 -> 17 at 1103235288
+⚠️ Ignored duplicate edge: 4 -> 17 at 1103242540
+⚠️ Ignored duplicate edge: 17 -> 4 at 1103243093
+⚠️ Ignored duplicate edge: 4 -> 0 at 1103247807
+⚠️ Ignored duplicate edge: 17 -> 4 at 1103286838
+⚠️ Ignored duplicate edge: 17 -> 4 at 1103310213
+⚠️ Ignored duplicate edge: 0 -> 17 at 1103311555
+⚠️ Ignored duplicate edge: 17 -> 4 at 1103656197
+✅ Total edges attempted to add: 52050
+✅ Total unique nodes added: 6809
 Temporal Graph Summary:
- - Number of nodes: 1899
- - Number of edges: 13838
- - Time range: 1082040961 - 1098777142
+ - Number of nodes: 6809
+ - Number of edges: 52038
+ - Time range: 1095984059 - 1105142178
+Density: 0.000331696
+Average edge weight: 215.954
+Largest connected component size: 6809
+Degree distribution (degree -> count):
+  1 -> 6284
+  2 -> 294
+  3 -> 77
+  4 -> 39
+  5 -> 14
+  6 -> 6
+  7 -> 4
+  8 -> 1
+  9 -> 1
+  10 -> 2
+  12 -> 1
+  15 -> 1
+  23 -> 1
+  24 -> 2
+  25 -> 2
+  28 -> 2
+  30 -> 1
+  31 -> 2
+  32 -> 1
+  35 -> 1
+  36 -> 1
+  37 -> 2
+  39 -> 3
+  41 -> 1
+  50 -> 1
+  51 -> 3
+  53 -> 1
+  55 -> 2
+  56 -> 1
+  57 -> 1
+  58 -> 1
+  61 -> 2
+  66 -> 1
+  68 -> 4
+  70 -> 1
+  71 -> 1
+  77 -> 1
+  79 -> 1
+  80 -> 1
+  81 -> 1
+  83 -> 3
+  86 -> 1
+  91 -> 1
+  92 -> 1
+  93 -> 1
+  94 -> 1
+  98 -> 1
+  99 -> 1
+  100 -> 1
+  101 -> 1
+  ... (truncated)
 Graph saved to file: social_graph.txt
 
 
 Generating snapshots...
 
 Snapshot 1:
-Number of nodes: 1086
-Number of edges: 5851
-Density: 0.00993117
-Average edge weight: 1
-Largest connected component size: 1082
+Temporal Graph Summary:
+ - Number of nodes: 1091
+ - Number of edges: 4552
+ - Time range: 1095984059 - 1096847792
+Density: 0.00193241
+Average edge weight: 206.998
+Largest connected component size: 1043
 Degree distribution (degree -> count):
-  1 -> 234
-  2 -> 142
-  3 -> 99
-  4 -> 75
-  5 -> 56
-  6 -> 37
-  7 -> 38
-  8 -> 32
-  9 -> 21
-  10 -> 29
-  11 -> 29
-  12 -> 22
-  13 -> 18
-  14 -> 13
-  15 -> 21
-  16 -> 12
-  17 -> 9
-  18 -> 9
-  19 -> 13
-  20 -> 6
-  21 -> 10
-  22 -> 8
-  23 -> 16
-  24 -> 7
-  25 -> 8
-  26 -> 9
-  27 -> 8
-  28 -> 3
-  29 -> 8
-  30 -> 4
-  31 -> 5
-  32 -> 6
-  33 -> 5
-  34 -> 6
-  35 -> 4
-  36 -> 2
-  37 -> 1
-  38 -> 1
-  39 -> 3
-  40 -> 3
-  41 -> 3
-  42 -> 1
-  45 -> 2
-  46 -> 4
-  47 -> 3
-  48 -> 1
-  49 -> 2
-  50 -> 2
-  51 -> 4
-  52 -> 2
-  ... (truncated)
-
-Snapshot 2:
-Number of nodes: 1371
-Number of edges: 6981
-Density: 0.00743344
-Average edge weight: 1
-Largest connected component size: 1363
-Degree distribution (degree -> count):
-  1 -> 304
-  2 -> 168
-  3 -> 98
-  4 -> 94
-  5 -> 82
-  6 -> 50
-  7 -> 48
-  8 -> 35
-  9 -> 36
-  10 -> 40
-  11 -> 46
-  12 -> 36
-  13 -> 23
-  14 -> 29
-  15 -> 22
-  16 -> 18
-  17 -> 22
-  18 -> 12
-  19 -> 14
-  20 -> 17
-  21 -> 15
-  22 -> 10
-  23 -> 3
-  24 -> 4
-  25 -> 10
-  26 -> 5
-  27 -> 8
-  28 -> 17
-  29 -> 9
-  30 -> 8
-  31 -> 5
-  32 -> 9
-  33 -> 5
-  34 -> 1
-  35 -> 5
-  36 -> 3
-  37 -> 3
-  38 -> 3
-  39 -> 1
-  40 -> 3
-  42 -> 3
-  43 -> 2
-  44 -> 1
-  45 -> 1
-  46 -> 3
-  47 -> 1
-  48 -> 2
-  49 -> 3
-  50 -> 1
-  51 -> 3
-  ... (truncated)
-
-Snapshot 3:
-Number of nodes: 623
-Number of edges: 1069
-Density: 0.00551733
-Average edge weight: 1
-Largest connected component size: 593
-Degree distribution (degree -> count):
-  1 -> 288
-  2 -> 102
-  3 -> 70
-  4 -> 44
-  5 -> 30
-  6 -> 24
-  7 -> 15
-  8 -> 8
-  9 -> 8
-  10 -> 9
-  11 -> 2
-  12 -> 4
-  13 -> 4
-  14 -> 2
-  15 -> 1
+  1 -> 995
+  2 -> 43
+  3 -> 1
+  4 -> 3
+  8 -> 1
+  9 -> 1
+  10 -> 1
+  11 -> 1
+  13 -> 5
+  14 -> 1
+  15 -> 3
   16 -> 1
   17 -> 1
-  18 -> 2
+  18 -> 6
+  19 -> 1
   20 -> 1
-  21 -> 1
-  23 -> 1
-  24 -> 1
+  21 -> 3
+  22 -> 1
+  23 -> 3
+  24 -> 2
+  25 -> 1
+  26 -> 1
+  27 -> 1
+  28 -> 2
+  29 -> 2
+  33 -> 1
+  35 -> 2
+  37 -> 1
+  41 -> 1
+  44 -> 1
+  45 -> 1
+  51 -> 1
+  66 -> 1
+  79 -> 1
+
+Snapshot 2:
+Temporal Graph Summary:
+ - Number of nodes: 1154
+ - Number of edges: 4426
+ - Time range: 1096848133 - 1097711985
+Density: 0.00185486
+Average edge weight: 201.249
+Largest connected component size: 1091
+Degree distribution (degree -> count):
+  1 -> 1032
+  2 -> 49
+  3 -> 8
+  4 -> 6
+  6 -> 2
+  7 -> 3
+  8 -> 4
+  9 -> 1
+  11 -> 4
+  14 -> 3
+  15 -> 2
+  16 -> 2
+  17 -> 5
+  18 -> 3
+  19 -> 1
+  20 -> 4
+  21 -> 2
+  22 -> 2
+  23 -> 2
+  25 -> 2
+  26 -> 2
+  29 -> 2
+  30 -> 1
+  31 -> 1
+  34 -> 2
+  36 -> 2
+  38 -> 1
+  40 -> 2
+  43 -> 1
+  50 -> 1
+  52 -> 1
+  74 -> 1
+
+Snapshot 3:
+Temporal Graph Summary:
+ - Number of nodes: 1315
+ - Number of edges: 5531
+ - Time range: 1097712296 - 1098575538
+Density: 0.0016355
+Average edge weight: 197.945
+Largest connected component size: 1226
+Degree distribution (degree -> count):
+  1 -> 1176
+  2 -> 59
+  3 -> 9
+  4 -> 4
+  6 -> 4
+  8 -> 4
+  9 -> 2
+  10 -> 4
+  11 -> 4
+  12 -> 1
+  13 -> 1
+  14 -> 3
+  15 -> 1
+  16 -> 2
+  17 -> 4
+  18 -> 1
+  19 -> 2
+  20 -> 2
+  21 -> 3
+  22 -> 2
+  23 -> 3
+  24 -> 3
+  26 -> 2
+  27 -> 2
   28 -> 1
-  89 -> 1
-  95 -> 1
-  101 -> 1
+  29 -> 1
+  31 -> 1
+  32 -> 1
+  35 -> 1
+  36 -> 3
+  39 -> 2
+  46 -> 2
+  48 -> 1
+  49 -> 1
+  50 -> 2
+  70 -> 1
 
 Snapshot 4:
-Number of nodes: 406
-Number of edges: 642
-Density: 0.00780879
-Average edge weight: 1
-Largest connected component size: 356
+Temporal Graph Summary:
+ - Number of nodes: 1677
+ - Number of edges: 6738
+ - Time range: 1098576168 - 1099439841
+Density: 0.00129436
+Average edge weight: 216.018
+Largest connected component size: 1502
 Degree distribution (degree -> count):
-  1 -> 194
-  2 -> 68
-  3 -> 40
-  4 -> 31
-  5 -> 17
-  6 -> 10
-  7 -> 7
-  8 -> 11
-  9 -> 6
+  1 -> 1509
+  2 -> 67
+  3 -> 17
+  4 -> 8
+  6 -> 4
+  7 -> 2
+  8 -> 4
+  9 -> 2
+  10 -> 1
+  11 -> 2
+  12 -> 6
+  13 -> 1
+  14 -> 2
+  15 -> 2
+  16 -> 5
+  17 -> 1
+  18 -> 1
+  19 -> 1
+  20 -> 3
+  21 -> 2
+  22 -> 5
+  23 -> 2
+  24 -> 1
+  25 -> 1
+  26 -> 4
+  27 -> 3
+  28 -> 1
+  29 -> 1
+  30 -> 1
+  31 -> 1
+  32 -> 1
+  34 -> 1
+  38 -> 1
+  41 -> 3
+  42 -> 1
+  44 -> 1
+  45 -> 1
+  46 -> 1
+  49 -> 1
+  50 -> 1
+  51 -> 1
+  54 -> 1
+  74 -> 1
+  78 -> 1
+  146 -> 1
+
+Snapshot 5:
+Temporal Graph Summary:
+ - Number of nodes: 1469
+ - Number of edges: 5604
+ - Time range: 1099440147 - 1100303948
+Density: 0.00146163
+Average edge weight: 246.896
+Largest connected component size: 1368
+Degree distribution (degree -> count):
+  1 -> 1333
+  2 -> 48
+  3 -> 11
+  4 -> 2
+  5 -> 3
+  6 -> 6
+  8 -> 2
+  9 -> 1
   10 -> 3
+  11 -> 1
+  12 -> 5
+  13 -> 2
+  14 -> 1
+  15 -> 2
+  16 -> 3
+  17 -> 1
+  18 -> 1
+  19 -> 3
+  20 -> 3
+  21 -> 4
+  22 -> 2
+  23 -> 1
+  24 -> 2
+  25 -> 2
+  26 -> 2
+  27 -> 2
+  28 -> 3
+  29 -> 2
+  31 -> 2
+  32 -> 1
+  34 -> 1
+  35 -> 2
+  38 -> 3
+  39 -> 1
+  40 -> 1
+  45 -> 1
+  47 -> 1
+  49 -> 2
+  50 -> 1
+  51 -> 1
+  56 -> 1
+
+Snapshot 6:
+Temporal Graph Summary:
+ - Number of nodes: 1438
+ - Number of edges: 5650
+ - Time range: 1100304073 - 1101167896
+Density: 0.0014789
+Average edge weight: 249.924
+Largest connected component size: 1299
+Degree distribution (degree -> count):
+  1 -> 1295
+  2 -> 51
+  3 -> 11
+  4 -> 6
+  5 -> 1
+  6 -> 1
+  7 -> 2
+  8 -> 2
+  9 -> 4
+  10 -> 6
+  11 -> 3
+  12 -> 3
+  13 -> 3
+  14 -> 4
+  15 -> 4
+  16 -> 3
+  18 -> 1
+  19 -> 1
+  20 -> 2
+  21 -> 3
+  22 -> 2
+  24 -> 5
+  25 -> 4
+  26 -> 2
+  27 -> 1
+  28 -> 1
+  29 -> 2
+  30 -> 1
+  31 -> 4
+  33 -> 1
+  35 -> 1
+  42 -> 1
+  48 -> 1
+  49 -> 1
+  50 -> 2
+  53 -> 1
+  55 -> 1
+  56 -> 1
+
+Snapshot 7:
+Temporal Graph Summary:
+ - Number of nodes: 1352
+ - Number of edges: 5292
+ - Time range: 1101168223 - 1102031889
+Density: 0.00155703
+Average edge weight: 242.854
+Largest connected component size: 1236
+Degree distribution (degree -> count):
+  1 -> 1232
+  2 -> 33
+  3 -> 6
+  4 -> 5
+  5 -> 2
+  6 -> 2
+  7 -> 5
+  8 -> 6
+  9 -> 1
+  10 -> 4
+  11 -> 2
+  12 -> 3
+  15 -> 4
+  16 -> 2
+  17 -> 3
+  18 -> 5
+  19 -> 2
+  20 -> 3
+  21 -> 4
+  22 -> 3
+  23 -> 2
+  24 -> 2
+  25 -> 1
+  26 -> 1
+  27 -> 4
+  28 -> 1
+  29 -> 1
+  32 -> 2
+  33 -> 2
+  34 -> 1
+  35 -> 1
+  36 -> 1
+  37 -> 2
+  41 -> 1
+  49 -> 1
+  51 -> 1
+  55 -> 1
+
+Snapshot 8:
+Temporal Graph Summary:
+ - Number of nodes: 1156
+ - Number of edges: 4215
+ - Time range: 1102032356 - 1102895852
+Density: 0.00185443
+Average edge weight: 222.159
+Largest connected component size: 1052
+Degree distribution (degree -> count):
+  1 -> 1024
+  2 -> 47
+  3 -> 7
+  4 -> 4
+  5 -> 3
+  6 -> 3
+  7 -> 4
+  8 -> 7
+  9 -> 3
+  10 -> 5
+  11 -> 2
+  12 -> 3
+  13 -> 4
+  14 -> 3
+  15 -> 2
+  16 -> 2
+  17 -> 3
+  18 -> 2
+  19 -> 1
+  20 -> 2
+  21 -> 2
+  22 -> 1
+  23 -> 3
+  25 -> 3
+  27 -> 3
+  28 -> 2
+  30 -> 1
+  31 -> 1
+  33 -> 1
+  34 -> 1
+  35 -> 1
+  36 -> 1
+  40 -> 1
+  41 -> 2
+  44 -> 1
+  58 -> 1
+
+Snapshot 9:
+Temporal Graph Summary:
+ - Number of nodes: 1222
+ - Number of edges: 4342
+ - Time range: 1102896178 - 1103760015
+Density: 0.00171173
+Average edge weight: 223.294
+Largest connected component size: 1061
+Degree distribution (degree -> count):
+  1 -> 1129
+  2 -> 28
+  3 -> 4
+  4 -> 1
+  5 -> 3
+  6 -> 1
+  7 -> 3
+  8 -> 1
+  9 -> 3
+  10 -> 2
   11 -> 1
   12 -> 2
   13 -> 4
-  14 -> 1
-  15 -> 1
-  16 -> 2
-  17 -> 2
-  18 -> 1
-  20 -> 1
-  27 -> 1
-  30 -> 1
-  31 -> 1
-  36 -> 1
-
-Snapshot 5:
-Number of nodes: 410
-Number of edges: 628
-Density: 0.00749001
-Average edge weight: 1
-Largest connected component size: 385
-Degree distribution (degree -> count):
-  1 -> 221
-  2 -> 59
-  3 -> 46
-  4 -> 24
-  5 -> 7
-  6 -> 10
-  7 -> 11
-  8 -> 3
-  9 -> 4
-  10 -> 6
-  11 -> 6
-  12 -> 2
-  13 -> 1
-  14 -> 1
+  14 -> 4
   15 -> 1
   16 -> 1
-  19 -> 3
+  17 -> 3
+  18 -> 3
+  19 -> 1
+  20 -> 2
+  24 -> 1
   25 -> 1
-  46 -> 1
-  55 -> 1
-  60 -> 1
+  26 -> 3
+  27 -> 3
+  29 -> 2
+  32 -> 2
+  34 -> 1
+  35 -> 1
+  36 -> 1
+  39 -> 1
+  40 -> 3
+  42 -> 1
+  43 -> 1
+  48 -> 1
+  51 -> 1
+  67 -> 1
+  74 -> 1
 
-Snapshot 6:
-Number of nodes: 327
-Number of edges: 458
-Density: 0.00859271
-Average edge weight: 1
-Largest connected component size: 301
+Snapshot 10:
+Temporal Graph Summary:
+ - Number of nodes: 1004
+ - Number of edges: 3456
+ - Time range: 1103760073 - 1104622908
+Density: 0.00199005
+Average edge weight: 212.601
+Largest connected component size: 736
 Degree distribution (degree -> count):
-  1 -> 163
-  2 -> 74
-  3 -> 29
-  4 -> 13
-  5 -> 4
-  6 -> 9
-  7 -> 10
-  8 -> 3
-  9 -> 6
-  10 -> 6
-  11 -> 2
-  12 -> 2
-  13 -> 1
-  14 -> 1
-  16 -> 1
-  23 -> 2
-  49 -> 1
-
-Snapshot 7:
-Number of nodes: 200
-Number of edges: 179
-Density: 0.00899497
-Average edge weight: 1
-Largest connected component size: 145
-Degree distribution (degree -> count):
-  1 -> 144
-  2 -> 34
-  3 -> 12
-  4 -> 2
-  5 -> 2
-  6 -> 1
-  7 -> 2
+  1 -> 943
+  2 -> 5
+  3 -> 2
+  4 -> 4
+  6 -> 2
+  7 -> 5
   8 -> 1
+  9 -> 3
+  10 -> 1
+  11 -> 1
+  12 -> 3
+  13 -> 2
+  14 -> 2
+  15 -> 3
+  16 -> 2
+  18 -> 1
+  19 -> 2
+  20 -> 3
+  22 -> 3
+  23 -> 1
+  24 -> 1
+  25 -> 1
+  27 -> 1
+  29 -> 1
+  31 -> 1
+  33 -> 2
+  34 -> 1
+  36 -> 1
+  39 -> 1
+  40 -> 1
+  44 -> 1
+  46 -> 1
+  56 -> 1
+  57 -> 1
+
+Snapshot 11:
+Temporal Graph Summary:
+ - Number of nodes: 779
+ - Number of edges: 2232
+ - Time range: 1104624165 - 1105142178
+Density: 0.00257729
+Average edge weight: 195.857
+Largest connected component size: 572
+Degree distribution (degree -> count):
+  1 -> 709
+  2 -> 15
+  3 -> 1
+  4 -> 1
+  5 -> 6
+  6 -> 2
+  7 -> 3
+  8 -> 4
+  9 -> 4
+  11 -> 5
+  12 -> 1
+  13 -> 2
+  14 -> 4
+  15 -> 5
+  16 -> 1
+  17 -> 1
+  19 -> 3
+  21 -> 2
+  24 -> 1
   26 -> 1
+  27 -> 1
+  31 -> 2
+  34 -> 1
+  36 -> 1
   38 -> 1
+  39 -> 1
+  43 -> 1
 
 Process finished with exit code 0
 

@@ -128,18 +128,15 @@ void Graph::printGraphSummary() const
     }
 }
 
-void Graph::saveToFile(const std::string& filename) const {
-    std::ofstream file(filename);
-    if (!file) {
-        std::cerr << "Error: Unable to open file " << filename << std::endl;
-        return;
-    }
-
-    for (const auto& node : adjacencyList) {
-        for (int neighbor : node.second) {
-            file << node.first << " " << neighbor << "\n";
+void Graph::saveToFile(const std::string &filename) const {
+    std::ofstream outFile(filename);
+    for (const auto& [node, neighbors] : adjacencyList) {
+        for (const auto& neighbor : neighbors) {
+            double weight = edgeWeights.at({node, neighbor}); // Získání váhy hrany
+            outFile << node << " " << neighbor << " " << weight << "\n";
         }
     }
-    file.close();
-    std::cout << "Graph saved to file: " << filename << std::endl << std::endl;
+
+    outFile.close();
 }
+

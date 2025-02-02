@@ -2,6 +2,12 @@
 #include "TemporalGraph.h"
 #include <iostream>
 
+/*
+ *podivej se jak s tim pracuje gelphi
+ *jak deli intervaly, co ty data znamenaji, co delat kdyz stejne hrany jiny timestep
+ *by moha byt vaha, ale vaha je tam jako porametr, tak jak?
+ **/
+
 int main() {
     std::cout << "Loading static biological network...\n";
     Graph bioGraph = GraphLoader::loadStaticGraph("bio-SC-LC.edges");
@@ -9,7 +15,7 @@ int main() {
     bioGraph.saveToFile("bio_graph.txt");
 
     std::cout << "\nLoading temporal social network...\n";
-    TemporalGraph socialGraph = GraphLoader::loadTemporalGraph("CollegeMsg.txt");
+    TemporalGraph socialGraph = GraphLoader::loadTemporalGraph("ia-reality-call.edges");
 
     // Analyze the entire temporal graph first
     socialGraph.printTemporalGraphSummary();
@@ -17,15 +23,13 @@ int main() {
 
     // Dividing temporal graph into snapshots
     std::cout << "\nGenerating snapshots...\n";
-   // socialGraph.createSnapshots(10);
+    auto snapshots = socialGraph.generateSnapshots(Constants::snapInterval);
 
-    // Analyzing snapshots
-    int count = 0;
-    for (const auto& snapshot : socialGraph.generateSnapshots(3600 * 24 * 30)) {
-        std::cout << "\nSnapshot " << count + 1 << ":\n";
-        snapshot.printGraphSummary();
-        count++;
+    for (size_t i = 0; i < snapshots.size(); i++) {
+        std::cout << "\nSnapshot " << i + 1 << ":\n";
+        snapshots[i].printTemporalGraphSummary();
     }
+
 
     return 0;
 }
