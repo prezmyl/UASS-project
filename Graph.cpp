@@ -3,6 +3,8 @@
 //
 
 #include "Graph.h"
+
+#include <algorithm>
 #include <queue>
 
 
@@ -162,6 +164,29 @@ int Graph::mostActiveNode() const {
     return maxNode;
 }
 
+std::vector<int> Graph::findTopHubs(int topN) const {
+    std::vector<std::pair<int, int>> degreeList;
+
+    // Vytvoření seznamu (uzel, stupeň)
+    for (const auto& [node, neighbors] : adjacencyList) {
+        degreeList.emplace_back(node, neighbors.size());
+    }
+
+    // Seřadíme podle stupně sestupně
+    std::sort(degreeList.begin(), degreeList.end(), [](const auto& a, const auto& b) {
+        return a.second > b.second;
+    });
+
+    // Vybereme prvních N hubů
+    std::vector<int> topHubs;
+    for (int i = 0; i < std::min(topN, static_cast<int>(degreeList.size())); ++i) {
+        topHubs.push_back(degreeList[i].first);
+    }
+
+    return topHubs;
+}
+
+
 void Graph::analyzeGraph(const std::string& name, std::ostream& out1, std::ostream& out2) const {
     Utils::writeOutput(out1, out2, "📊 " + name + " Summary:");
     Utils::writeOutput(out1, out2, " - Nodes: " + std::to_string(numNodes()));
@@ -171,6 +196,12 @@ void Graph::analyzeGraph(const std::string& name, std::ostream& out1, std::ostre
     Utils::writeOutput(out1, out2, " - Clustering: " + std::to_string(clusteringCoefficient()));
     Utils::writeOutput(out1, out2, " - Triangles: " + std::to_string(triangleCount()));
     Utils::writeOutput(out1, out2, " - Most active node: " + std::to_string(mostActiveNode()));
+
+    std::vector<int> topHubs = findTopHubs(20);
+    Utils::writeOutput(out1, out2, " - Top 20 Hubs:");
+    for (int hub : topHubs) {
+        Utils::writeOutput(out1, out2, "   - Node " + std::to_string(hub) + " with degree " + std::to_string(adjacencyList.at(hub).size()));
+    }
 
     Utils::writeOutput(out1, out2, "Degree distribution:");
     for (const auto& [degree, count] : degreeDistribution()) {

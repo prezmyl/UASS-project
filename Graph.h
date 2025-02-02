@@ -45,6 +45,8 @@ public:
     int triangleCount() const;
     int mostActiveNode() const;
 
+    std::vector<int> findTopHubs(int topN) const;
+
     void analyzeGraph(const std::string &name, std::ostream &out1, std::ostream &out2) const;
 
     void printGraphSummary() const;
