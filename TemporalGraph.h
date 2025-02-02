@@ -29,22 +29,24 @@ namespace std {
 
 class TemporalGraph : public Graph {
 private:
-    std::unordered_set<EdgeKey> existingEdges;
-    std::vector<std::tuple<int, int, double, long>> edges; // node1, node2, timestep
-    std::map<int, Graph> snapshots; //mapping snaposthos to subgraphs
-    long timeRangeStart, timeRangeEnd; //min and max timestep in database
+    std::vector<std::tuple<int, int, double, long>> edges;
+    long timeRangeStart;
+    long timeRangeEnd;
 
 public:
     TemporalGraph();
     void addTemporalEdge(int u, int v, double weight, long timestamp);
     int numEdges() const;
 
-    TemporalGraph getSnapshot(long start, long end) const;
-    std::vector<TemporalGraph> generateSnapshots(long interval) const;
+    Graph convertToStaticGraph() const;
+    Graph getSnapshot(long start, long end) const;
+    std::vector<Graph> generateSnapshots(long interval, const std::string &outputPrefix) const;
 
     void printTemporalGraphSummary() const;
     void saveToFile(const std::string &filename) const;
-    void saveSnapshotsToFile(const std::string &filename, long snapshotInterval) const;
+    void saveSnapshotToFile(const Graph &snapshot, const std::string &filename, long start, long end) const;
+
+
 };
 
 

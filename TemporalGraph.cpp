@@ -10,17 +10,8 @@ TemporalGraph::TemporalGraph() : timeRangeStart(LONG_MAX), timeRangeEnd(LONG_MIN
 
 
 void TemporalGraph::addTemporalEdge(int u, int v, double weight, long timestamp) {
-    // Pokud už hrana existuje, přičteme novou délku hovoru a zvýšíme počet hovorů
-    if (adjacencyList[u].count(v)) {
-        adjacencyList[u][v].first += weight;  // Sčítání délky hovorů
-        adjacencyList[u][v].second += 1;      // Počet hovorů
-        adjacencyList[v][u].first += weight;
-        adjacencyList[v][u].second += 1;
-    } else {
-        adjacencyList[u][v] = {weight, 1};  // První hovor mezi těmito uzly
-        adjacencyList[v][u] = {weight, 1};
-    }
-
+    edges.emplace_back(u, v, weight, timestamp);
+    addEdge(u, v, weight);
     timeRangeStart = std::min(timeRangeStart, timestamp);
     timeRangeEnd = std::max(timeRangeEnd, timestamp);
 }
@@ -31,11 +22,20 @@ int TemporalGraph::numEdges() const {
 }
 
 
+Graph TemporalGraph::convertToStaticGraph() const {
+    Graph staticGraph;
+    for (const auto& edge : edges) {
+        int u = std::get<0>(edge);
+        int v = std::get<1>(edge);
+        double weight = std::get<2>(edge);
+        staticGraph.addEdge(u, v, weight);
+    }
+    return staticGraph;
+}
 
 
-
-TemporalGraph TemporalGraph::getSnapshot(long start, long end) const {
-    TemporalGraph snapshot;
+Graph TemporalGraph::getSnapshot(long start, long end) const {
+    Graph snapshot;
 
     for (const auto& edge : edges) {
         long timestamp = std::get<3>(edge);
@@ -43,27 +43,31 @@ TemporalGraph TemporalGraph::getSnapshot(long start, long end) const {
             int u = std::get<0>(edge);
             int v = std::get<1>(edge);
             double weight = std::get<2>(edge);
-            snapshot.addTemporalEdge(u, v, weight, timestamp);
+            snapshot.addEdge(u, v, weight);
         }
     }
-    std::cout << "📸 Snapshotting: " << start << " - " << end
-          << " | Total edges: " << snapshot.edges.size() << std::endl;
 
     return snapshot;
 }
 
 
+std::vector<Graph> TemporalGraph::generateSnapshots(long interval, const std::string& outputPrefix = "") const {
+    std::vector<Graph> snapshots;
 
-std::vector<TemporalGraph> TemporalGraph::generateSnapshots(long interval) const {
-    std::vector<TemporalGraph> snapshots;
-    int totalEdgesInAllSnapshots = 0;
     for (long start = timeRangeStart; start < timeRangeEnd; start += interval) {
         long end = start + interval;
-        snapshots.push_back(getSnapshot(start, end));
+        Graph snapshot = getSnapshot(start, end);
+        snapshots.push_back(snapshot);
+
+        if (!outputPrefix.empty()) { // Pokud je zadán prefix, rovnou ukládáme snapshoty
+            std::string filename = outputPrefix + "_snapshot_" + std::to_string(start) + "_" + std::to_string(end) + ".txt";
+            saveSnapshotToFile(snapshot, filename, start, end);
+        }
     }
 
     return snapshots;
 }
+
 
 
 
@@ -110,22 +114,26 @@ void TemporalGraph::saveToFile(const std::string &filename) const {
     outFile.close();
 }
 
-void TemporalGraph::saveSnapshotsToFile(const std::string &filename, long snapshotInterval) const {
+void TemporalGraph::saveSnapshotToFile(const Graph &snapshot, const std::string &filename, long start, long end) const {
     std::ofstream outFile(filename);
-    for (long start = timeRangeStart; start < timeRangeEnd; start += snapshotInterval) {
-        long end = start + snapshotInterval;
-        TemporalGraph snapshot = getSnapshot(start, end);
+    if (!outFile) {
+        std::cerr << "❌ Error: Cannot open file " << filename << " for writing." << std::endl;
+        return;
+    }
 
-        for (const auto& edge : snapshot.edges) {
-            outFile << std::get<0>(edge) << " "
-                    << std::get<1>(edge) << " "
-                    << std::get<2>(edge) << " "
-                    << std::get<3>(edge) << "\n";
+    outFile << "# Snapshot from " << start << " to " << end << "\n";
+    for (const auto& [node, neighbors] : snapshot.getAdjacencyList()) {
+        for (const auto& [neighbor, weight] : neighbors) {
+            outFile << node << " " << neighbor << " " << weight.first << " " << weight.second << "\n";
         }
     }
     outFile.close();
-    std::cout << "✅ Snapshots saved to " << filename << std::endl;
+    std::cout << "✅ Snapshot saved: " << filename << std::endl;
 }
+
+
+
+
 
 
 

@@ -25,8 +25,8 @@ struct pair_hash {
 
 class Graph {
 protected:
-    std::unordered_map<int, std::set<int>> adjacencyList; //undirected
-    std::unordered_map<std::pair<int, int>, double, pair_hash> edgeWeights;
+    // adjacencyList: uchovává { sousední uzel -> { celková váha, počet opakování } }
+    std::unordered_map<int, std::unordered_map<int, std::pair<double, int>>> adjacencyList;
 
 public:
     Graph();
@@ -40,6 +40,11 @@ public:
     std::map<int, int> degreeDistribution() const;
     void printGraphSummary() const;
     void saveToFile(const std::string &filename) const;
+    void convertFromTemporalGraph(const std::vector<std::tuple<int, int, double, long>>& edges);
+    const std::unordered_map<int, std::unordered_map<int, std::pair<double, int>>>& getAdjacencyList() const {
+        return adjacencyList;
+    }
+
 
 
 };

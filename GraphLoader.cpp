@@ -33,45 +33,38 @@ TemporalGraph GraphLoader::loadTemporalGraph(const std::string &filename) {
     }
 
     std::string line;
-    int edgeCount = 0;
-    std::set<int> uniqueNodes;
+    int count = 0;
 
     while (std::getline(file, line)) {
         std::istringstream iss(line);
         std::vector<std::string> tokens;
         std::string token;
 
+        // Správné rozdělení řádku podle čárek
         while (std::getline(iss, token, ',')) {
             tokens.push_back(token);
         }
 
-        if (tokens.size() != 4) {
-            std::cerr << "⚠️ Skipping invalid line: " << line << std::endl;
+        if (tokens.size() < 4) {
+            std::cerr << "⚠ Warning: Skipping malformed line: " << line << std::endl;
             continue;
         }
 
-        try {
-            int u = std::stoi(tokens[0]);
-            int v = std::stoi(tokens[1]);
-            long timestamp = std::stol(tokens[2]);
-            int weight = std::stoi(tokens[3]);
+        int u = std::stoi(tokens[0]);
+        int v = std::stoi(tokens[1]);
+        long timestamp = std::stol(tokens[2]);
+        double weight = std::stod(tokens[3]);
 
-            // Ukládáme všechny hrany včetně těch s různým časovým údajem
-            graph.addTemporalEdge(u, v, weight, timestamp);
-            edgeCount++;
-
-            uniqueNodes.insert(u);
-            uniqueNodes.insert(v);
-        } catch (const std::exception &e) {
-            std::cerr << "❌ Parsing error on line: " << line << " -> " << e.what() << std::endl;
-        }
+        // Přidání hrany do temporálního grafu
+        graph.addTemporalEdge(u, v, weight, timestamp);
+        count++;
     }
 
-    std::cout << "✅ Total edges attempted to add: " << edgeCount << std::endl;
-    std::cout << "✅ Total unique nodes added: " << uniqueNodes.size() << std::endl;
-
+    file.close();
+    std::cout << "✅ Loaded " << count << " edges into temporal graph." << std::endl;
     return graph;
 }
+
 
 
 

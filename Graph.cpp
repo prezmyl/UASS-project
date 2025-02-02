@@ -10,10 +10,15 @@ Graph::Graph() = default;
 
 
 void Graph::addEdge(int u, int v, double weight) {
-    adjacencyList[u].insert(v);
-    adjacencyList[v].insert(u);
-    edgeWeights[{u, v}] = weight;
-    edgeWeights[{v, u}] = weight; //undirected
+    if (adjacencyList[u].count(v)) {
+        adjacencyList[u][v].first += weight;  // Sčítáme váhu (délku hovorů)
+        adjacencyList[u][v].second += 1;      // Počet opakování hrany (počet hovorů)
+        adjacencyList[v][u].first += weight;
+        adjacencyList[v][u].second += 1;
+    } else {
+        adjacencyList[u][v] = {weight, 1};
+        adjacencyList[v][u] = {weight, 1};
+    }
 }
 
 int Graph::numNodes() const {
@@ -21,11 +26,11 @@ int Graph::numNodes() const {
 }
 
 int Graph::numEdges() const {
-    long total = 0;
-    for (const auto& [node, neighbors] : adjacencyList) {
-        total += neighbors.size();
+    int count = 0;
+    for (const auto &node : adjacencyList) {
+        count += node.second.size();
     }
-    return total/2;
+    return count / 2;  // Kvůli neorientovanému grafu
 }
 
 double Graph::density() const {
@@ -36,12 +41,21 @@ double Graph::density() const {
 }
 
 double Graph::averageEdgeWeight() const {
-    if (edgeWeights.empty()) return 0.0;
+    if (adjacencyList.empty()) return 0.0;
+
     double sum = 0.0;
-    for (const auto& [edge, weight] : edgeWeights) {
-        sum += weight;
+    int count = 0;
+
+    for (const auto& [node, neighbors] : adjacencyList) {
+        for (const auto& [neighbor, data] : neighbors) {
+            if (node < neighbor) { // Aby se hrany nepočítaly dvakrát
+                sum += data.first;
+                count++;
+            }
+        }
     }
-    return sum / edgeWeights.size();
+
+    return (count > 0) ? sum / count : 0.0;
 }
 
 int Graph::bfsComponentSize(int start, std::unordered_set<int> &visited) const {
@@ -55,11 +69,10 @@ int Graph::bfsComponentSize(int start, std::unordered_set<int> &visited) const {
         q.pop();
         size++;
 
-        //run through neighbor
         auto it = adjacencyList.find(current);
         if (it != adjacencyList.end()) {
-            for (auto neighbor : it->second) {
-                if (!visited.contains(neighbor)) {
+            for (const auto& [neighbor, _] : it->second) {  // Použití iterátoru pro adjacencyList
+                if (visited.find(neighbor) == visited.end()) {
                     visited.insert(neighbor);
                     q.push(neighbor);
                 }
@@ -74,24 +87,24 @@ int Graph::largestConnectedComponentSize() const {
     int maxSize = 0;
 
     for (const auto& [node, _] : adjacencyList) {
-        if (!visited.contains(node)) {
+        if (visited.find(node) == visited.end()) {  // Opraveno, `contains()` není v `unordered_set`
             int size = bfsComponentSize(node, visited);
-            if (size > maxSize) {
-                maxSize = size;
-            }
+            maxSize = std::max(maxSize, size);
         }
     }
     return maxSize;
 }
 
+
 std::map<int, int> Graph::degreeDistribution() const {
     std::map<int, int> dist;
     for (const auto& [node, neighbors] : adjacencyList) {
         int deg = neighbors.size();
-        dist[deg]++;  // Increment frequency for given degree
+        dist[deg]++;  // Zvýšíme frekvenci daného stupně
     }
     return dist;
 }
+
 
 void Graph::printGraphSummary() const
 {
@@ -130,13 +143,22 @@ void Graph::printGraphSummary() const
 
 void Graph::saveToFile(const std::string &filename) const {
     std::ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        std::cerr << "❌ Error: Unable to open file " << filename << std::endl;
+        return;
+    }
+
     for (const auto& [node, neighbors] : adjacencyList) {
-        for (const auto& neighbor : neighbors) {
-            double weight = edgeWeights.at({node, neighbor}); // Získání váhy hrany
-            outFile << node << " " << neighbor << " " << weight << "\n";
+        for (const auto& [neighbor, data] : neighbors) {
+            double weight = data.first; // Celková délka hovorů
+            int callCount = data.second; // Počet hovorů
+            outFile << node << " " << neighbor << " " << weight << " " << callCount << "\n";
         }
     }
 
     outFile.close();
+    std::cout << "✅ Graph successfully saved to " << filename << std::endl;
 }
+
+
 

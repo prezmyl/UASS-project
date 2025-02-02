@@ -14,20 +14,22 @@ int main() {
     bioGraph.printGraphSummary();
     bioGraph.saveToFile("bio_graph.txt");
 
-    std::cout << "\nLoading temporal social network...\n";
-    TemporalGraph socialGraph = GraphLoader::loadTemporalGraph("ia-reality-call.edges");
+    std::cout << "\nLoading temporal network...\n";
+    TemporalGraph temporalGraph = GraphLoader::loadTemporalGraph("ia-reality-call.edges");
+
 
     // Analyze the entire temporal graph first
-    socialGraph.printTemporalGraphSummary();
-    socialGraph.saveToFile("social_graph.txt");
+    temporalGraph.printTemporalGraphSummary();
+    temporalGraph.saveToFile("temporal_graph.txt");
 
     // Dividing temporal graph into snapshots
     std::cout << "\nGenerating snapshots...\n";
-    auto snapshots = socialGraph.generateSnapshots(Constants::snapInterval);
+    auto snapshots = temporalGraph.generateSnapshots(Constants::snapInterval, "temporal_graph");
+
 
     for (size_t i = 0; i < snapshots.size(); i++) {
         std::cout << "\nSnapshot " << i + 1 << ":\n";
-        snapshots[i].printTemporalGraphSummary();
+        snapshots[i].printGraphSummary();
     }
 
 
