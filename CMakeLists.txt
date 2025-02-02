@@ -11,4 +11,5 @@ add_executable(project main.cpp
         GraphLoader.cpp
         GraphLoader.h
         Graph.cpp
-        Constants.h)
+        Constants.h
+        Utils.h)

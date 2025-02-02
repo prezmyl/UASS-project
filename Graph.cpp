@@ -106,6 +106,82 @@ std::map<int, int> Graph::degreeDistribution() const {
 }
 
 
+double Graph::averageDegree() const {
+    if (adjacencyList.empty()) return 0.0;
+    double totalDegree = 0;
+    for (const auto& [node, neighbors] : adjacencyList) {
+        totalDegree += neighbors.size();
+    }
+    return totalDegree / adjacencyList.size();
+}
+
+double Graph::clusteringCoefficient() const {
+    if (adjacencyList.empty()) return 0.0;
+
+    double totalClustering = 0.0;
+    for (const auto& [node, neighbors] : adjacencyList) {
+        int degree = neighbors.size();
+        if (degree < 2) continue;
+
+        int triangles = 0;
+        for (const auto& [neighbor1, _] : neighbors) {
+            for (const auto& [neighbor2, _] : neighbors) {
+                if (neighbor1 != neighbor2 && adjacencyList.at(neighbor1).count(neighbor2)) {
+                    triangles++;
+                }
+            }
+        }
+        totalClustering += (double)triangles / (degree * (degree - 1));
+    }
+    return totalClustering / adjacencyList.size();
+}
+
+int Graph::triangleCount() const {
+    int count = 0;
+    for (const auto& [node, neighbors] : adjacencyList) {
+        for (const auto& [neighbor1, _] : neighbors) {
+            for (const auto& [neighbor2, _] : neighbors) {
+                if (neighbor1 != neighbor2 && adjacencyList.at(neighbor1).count(neighbor2)) {
+                    count++;
+                }
+            }
+        }
+    }
+    return count / 3; // Každý trojúhelník byl spočítán třikrát
+}
+
+int Graph::mostActiveNode() const {
+    int maxNode = -1;
+    int maxDegree = 0;
+    for (const auto& [node, neighbors] : adjacencyList) {
+        if (neighbors.size() > maxDegree) {
+            maxDegree = neighbors.size();
+            maxNode = node;
+        }
+    }
+    return maxNode;
+}
+
+void Graph::analyzeGraph(const std::string& name, std::ostream& out1, std::ostream& out2) const {
+    Utils::writeOutput(out1, out2, "📊 " + name + " Summary:");
+    Utils::writeOutput(out1, out2, " - Nodes: " + std::to_string(numNodes()));
+    Utils::writeOutput(out1, out2, " - Edges: " + std::to_string(numEdges()));
+    Utils::writeOutput(out1, out2, " - Density: " + std::to_string(density()));
+    Utils::writeOutput(out1, out2, " - Avg Degree: " + std::to_string(averageDegree()));
+    Utils::writeOutput(out1, out2, " - Clustering: " + std::to_string(clusteringCoefficient()));
+    Utils::writeOutput(out1, out2, " - Triangles: " + std::to_string(triangleCount()));
+    Utils::writeOutput(out1, out2, " - Most active node: " + std::to_string(mostActiveNode()));
+
+    Utils::writeOutput(out1, out2, "Degree distribution:");
+    for (const auto& [degree, count] : degreeDistribution()) {
+        Utils::writeOutput(out1, out2, "  " + std::to_string(degree) + " -> " + std::to_string(count));
+    }
+    Utils::writeOutput(out1, out2, "----------------------------------");
+}
+
+
+
+
 void Graph::printGraphSummary() const
 {
     // 1) Basic checks

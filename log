@@ -1,12 +1,14 @@
 /home/xpolas/banska/UASS/projekt/project/cmake-build-debug/project
-Loading static biological network...
 20452 edges loaded
-Number of nodes: 2004
-Number of edges: 20452
-Density: 0.0101903
-Average edge weight: 2.5789
-Largest connected component size: 1999
-Degree distribution (degree -> count):
+📊 Biological Network Summary:
+ - Nodes: 2004
+ - Edges: 20452
+ - Density: 0.010190
+ - Avg Degree: 20.411178
+ - Clustering: 0.167586
+ - Triangles: 151916
+ - Most active node: 77
+Degree distribution:
   1 -> 197
   2 -> 124
   3 -> 118
@@ -57,80 +59,77 @@ Degree distribution (degree -> count):
   48 -> 7
   49 -> 7
   50 -> 7
-  ... (truncated)
-✅ Graph saved to bio_graph.txt
-
-Loading temporal social network...
-✅ Loaded 52050 edges into temporal graph.
-Temporal Graph Summary:
- - Number of nodes: 6809
- - Number of edges: 52050
- - Time range: 1095984059 - 1105142178
-Density: 0.000331696
-Average edge weight: 1186.99
-Largest connected component size: 6809
-Degree distribution (degree -> count):
-  1 -> 6284
-  2 -> 294
-  3 -> 77
-  4 -> 39
-  5 -> 14
-  6 -> 6
-  7 -> 4
-  8 -> 1
-  9 -> 1
-  10 -> 2
-  12 -> 1
-  15 -> 1
-  23 -> 1
-  24 -> 2
-  25 -> 2
-  28 -> 2
-  30 -> 1
-  31 -> 2
-  32 -> 1
-  35 -> 1
-  36 -> 1
-  37 -> 2
-  39 -> 3
-  41 -> 1
-  50 -> 1
-  51 -> 3
-  53 -> 1
-  55 -> 2
-  56 -> 1
-  57 -> 1
-  58 -> 1
-  61 -> 2
-  66 -> 1
-  68 -> 4
-  70 -> 1
-  71 -> 1
-  77 -> 1
-  79 -> 1
-  80 -> 1
-  81 -> 1
-  83 -> 3
+  51 -> 2
+  52 -> 8
+  53 -> 7
+  54 -> 10
+  55 -> 7
+  56 -> 7
+  57 -> 3
+  58 -> 5
+  59 -> 4
+  60 -> 3
+  61 -> 4
+  62 -> 2
+  63 -> 2
+  64 -> 8
+  65 -> 5
+  66 -> 6
+  67 -> 7
+  68 -> 5
+  69 -> 3
+  70 -> 9
+  71 -> 2
+  72 -> 2
+  73 -> 2
+  75 -> 5
+  76 -> 5
+  77 -> 4
+  78 -> 1
+  79 -> 5
+  81 -> 2
+  82 -> 2
+  83 -> 1
+  84 -> 6
+  85 -> 1
   86 -> 1
-  91 -> 1
+  87 -> 1
+  88 -> 1
+  90 -> 9
+  91 -> 2
   92 -> 1
-  93 -> 1
-  94 -> 1
+  93 -> 2
+  96 -> 1
   98 -> 1
-  99 -> 1
-  100 -> 1
   101 -> 1
-  ... (truncated)
-
-Generating snapshots...
-
-Snapshot 1:
-Number of nodes: 1091
-Number of edges: 1149
-Density: 0.00193241
-Average edge weight: 654.722
-Largest connected component size: 1043
-Degree distribution (degree -> count):
+  106 -> 1
+  107 -> 1
+  108 -> 1
+  111 -> 1
+  113 -> 1
+  117 -> 1
+  122 -> 16
+  127 -> 1
+  132 -> 1
+  134 -> 16
+  144 -> 1
+  147 -> 1
+  167 -> 1
+----------------------------------
+✅ Loaded 52050 edges into temporal graph.
+⏳ Temporal Network Properties:
+ - Time range: 1095984059 - 1105142178
+ - Avg call duration: 176.106763
+ - Avg activity per node: 2.258335
+📊 Snapshot 1095984059 - 1096848059 Summary:
+ - Nodes: 1091
+ - Edges: 1149
+ - Density: 0.001932
+ - Avg Degree: 2.106324
+ - Clustering: 0.018529
+ - Triangles: 181
+ - Most active node: 30
+Degree distribution:
   1 -> 995
   2 -> 43
   3 -> 1
@@ -165,14 +164,18 @@ Degree distribution (degree -> count):
   51 -> 1
   66 -> 1
   79 -> 1
-
-Snapshot 2:
-Number of nodes: 1154
-Number of edges: 1234
-Density: 0.00185486
-Average edge weight: 614.469
-Largest connected component size: 1091
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1096848059 - 1097712059 Summary:
+ - Nodes: 1154
+ - Edges: 1234
+ - Density: 0.001855
+ - Avg Degree: 2.138648
+ - Clustering: 0.012825
+❌ Error: Unable to open file snapshots/snapshot_1095984059_1096848059.txt
+❌ Error: Unable to open file snapshots/snapshot_1096848059_1097712059.txt
+ - Triangles: 195
+ - Most active node: 30
+Degree distribution:
   1 -> 1032
   2 -> 49
   3 -> 8
@@ -205,14 +208,16 @@ Degree distribution (degree -> count):
   50 -> 1
   52 -> 1
   74 -> 1
-
-Snapshot 3:
-Number of nodes: 1315
-Number of edges: 1413
-Density: 0.0016355
-Average edge weight: 631.587
-Largest connected component size: 1226
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1097712059 - 1098576059 Summary:
+ - Nodes: 1315
+ - Edges: 1413
+ - Density: 0.001636
+ - Avg Degree: 2.149810
+ - Clustering: 0.019957
+ - Triangles: 280
+ - Most active node: 30
+Degree distribution:
   1 -> 1176
   2 -> 59
   3 -> 9
@@ -249,14 +254,18 @@ Degree distribution (degree -> count):
   49 -> 1
   50 -> 2
   70 -> 1
-
-Snapshot 4:
-Number of nodes: 1677
-Number of edges: 1819
-Density: 0.00129436
-Average edge weight: 605.749
-Largest connected component size: 1502
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1098576059 - 1099440059 Summary:
+ - Nodes: 1677
+ - Edges: 1819
+ - Density: 0.001294
+ - Avg Degree: 2.169946
+❌ Error: Unable to open file snapshots/snapshot_1097712059_1098576059.txt
+❌ Error: Unable to open file snapshots/snapshot_1098576059_1099440059.txt
+ - Clustering: 0.014218
+ - Triangles: 327
+ - Most active node: 60
+Degree distribution:
   1 -> 1509
   2 -> 67
   3 -> 17
@@ -302,14 +311,16 @@ Degree distribution (degree -> count):
   74 -> 1
   78 -> 1
   146 -> 1
-
-Snapshot 5:
-Number of nodes: 1469
-Number of edges: 1576
-Density: 0.00146163
-Average edge weight: 640.658
-Largest connected component size: 1368
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1099440059 - 1100304059 Summary:
+ - Nodes: 1469
+ - Edges: 1576
+ - Density: 0.001462
+ - Avg Degree: 2.145677
+ - Clustering: 0.014735
+ - Triangles: 296
+ - Most active node: 72
+Degree distribution:
   1 -> 1333
   2 -> 48
   3 -> 11
@@ -351,14 +362,18 @@ Degree distribution (degree -> count):
   50 -> 1
   51 -> 1
   56 -> 1
-
-Snapshot 6:
-Number of nodes: 1438
-Number of edges: 1528
-Density: 0.0014789
-Average edge weight: 720.956
-Largest connected component size: 1299
-Degree distribution (degree -> count):
+----------------------------------
+❌ Error: Unable to open file snapshots/snapshot_1099440059_1100304059.txt
+📊 Snapshot 1100304059 - 1101168059 Summary:
+ - Nodes: 1438
+ - Edges: 1528
+ - Density: 0.001479
+ - Avg Degree: 2.125869
+ - Clustering: 0.013902
+ - Triangles: 286
+ - Most active node: 44
+Degree distribution:
+❌ Error: Unable to open file snapshots/snapshot_1100304059_1101168059.txt
   1 -> 1295
   2 -> 51
   3 -> 11
@@ -397,14 +412,16 @@ Degree distribution (degree -> count):
   53 -> 1
   55 -> 1
   56 -> 1
-
-Snapshot 7:
-Number of nodes: 1352
-Number of edges: 1422
-Density: 0.00155703
-Average edge weight: 673.431
-Largest connected component size: 1236
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1101168059 - 1102032059 Summary:
+ - Nodes: 1352
+ - Edges: 1422
+ - Density: 0.001557
+ - Avg Degree: 2.103550
+ - Clustering: 0.011368
+ - Triangles: 174
+ - Most active node: 38
+Degree distribution:
   1 -> 1232
   2 -> 33
   3 -> 6
@@ -442,14 +459,18 @@ Degree distribution (degree -> count):
   49 -> 1
   51 -> 1
   55 -> 1
-
-Snapshot 8:
-Number of nodes: 1156
-Number of edges: 1238
-Density: 0.00185443
-Average edge weight: 698.618
-Largest connected component size: 1052
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1102032059 - 1102896059 Summary:
+ - Nodes: 1156
+ - Edges: 1238
+ - Density: 0.001854
+ - Avg Degree: 2.142734
+❌ Error: Unable to open file snapshots/snapshot_1101168059_1102032059.txt
+❌ Error: Unable to open file snapshots/snapshot_1102032059_1102896059.txt
+ - Clustering: 0.017175
+ - Triangles: 157
+ - Most active node: 44
+Degree distribution:
   1 -> 1024
   2 -> 47
   3 -> 7
@@ -486,14 +507,16 @@ Degree distribution (degree -> count):
   41 -> 2
   44 -> 1
   58 -> 1
-
-Snapshot 9:
-Number of nodes: 1222
-Number of edges: 1277
-Density: 0.00171173
-Average edge weight: 643.669
-Largest connected component size: 1061
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1102896059 - 1103760059 Summary:
+ - Nodes: 1222
+ - Edges: 1277
+ - Density: 0.001712
+ - Avg Degree: 2.090835
+ - Clustering: 0.012359
+ - Triangles: 154
+ - Most active node: 44
+Degree distribution:
   1 -> 1129
   2 -> 28
   3 -> 4
@@ -531,14 +554,19 @@ Degree distribution (degree -> count):
   51 -> 1
   67 -> 1
   74 -> 1
-
-Snapshot 10:
-Number of nodes: 1004
-Number of edges: 1002
-Density: 0.00199005
-Average edge weight: 510.879
-Largest connected component size: 736
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1103760059 - 1104624059 Summary:
+ - Nodes: 1004
+ - Edges: 1002
+ - Density: 0.001990
+ - Avg Degree: 1.996016
+ - Clustering: 0.001579
+❌ Error: Unable to open file snapshots/snapshot_1102896059_1103760059.txt
+❌ Error: Unable to open file snapshots/snapshot_1103760059_1104624059.txt
+❌ Error: Unable to open file snapshots/snapshot_1104624059_1105488059.txt
+ - Triangles: 84
+ - Most active node: 72
+Degree distribution:
   1 -> 943
   2 -> 5
   3 -> 2
@@ -573,14 +601,16 @@ Degree distribution (degree -> count):
   46 -> 1
   56 -> 1
   57 -> 1
-
-Snapshot 11:
-Number of nodes: 779
-Number of edges: 781
-Density: 0.00257729
-Average edge weight: 476.355
-Largest connected component size: 572
-Degree distribution (degree -> count):
+----------------------------------
+📊 Snapshot 1104624059 - 1105488059 Summary:
+ - Nodes: 779
+ - Edges: 781
+ - Density: 0.002577
+ - Avg Degree: 2.005135
+ - Clustering: 0.007024
+ - Triangles: 66
+ - Most active node: 71
+Degree distribution:
   1 -> 709
   2 -> 15
   3 -> 1
@@ -608,6 +638,9 @@ Degree distribution (degree -> count):
   38 -> 1
   39 -> 1
   43 -> 1
+----------------------------------
+✅ Snapshot metrics saved to snapshots
+✅ Snapshot metrics saved to snapshots
 
 Process finished with exit code 0
 

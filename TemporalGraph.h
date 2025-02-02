@@ -38,11 +38,20 @@ public:
     void addTemporalEdge(int u, int v, double weight, long timestamp);
     int numEdges() const;
 
+    double averageCallDuration() const;
+    double averageActivity() const;
+
+
     Graph convertToStaticGraph() const;
     Graph getSnapshot(long start, long end) const;
     std::vector<Graph> generateSnapshots(long interval, const std::string &outputPrefix) const;
 
     void printTemporalGraphSummary() const;
+
+    void analyzeTemporalProperties(std::ostream &out1, std::ostream &out2) const;
+
+    void analyzeSnapshots(const std::string &dir, long snapshotInterval) const;
+
     void saveToFile(const std::string &filename) const;
     void saveSnapshotToFile(const Graph &snapshot, const std::string &filename, long start, long end) const;
 

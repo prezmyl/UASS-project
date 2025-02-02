@@ -15,6 +15,7 @@
 #include <unordered_set>
 #include <utility>
 #include "Constants.h"
+#include "Utils.h"
 
 struct pair_hash {
     template <typename T1, typename T2>
@@ -33,17 +34,25 @@ public:
     void addEdge(int u, int v, double weight);
     int numNodes() const;
     int numEdges() const;
+
     double density() const;
     double averageEdgeWeight() const;
     int bfsComponentSize(int start, std::unordered_set<int> &visited) const;
     int largestConnectedComponentSize() const;
     std::map<int, int> degreeDistribution() const;
+    double averageDegree() const;
+    double clusteringCoefficient() const;
+    int triangleCount() const;
+    int mostActiveNode() const;
+
+    void analyzeGraph(const std::string &name, std::ostream &out1, std::ostream &out2) const;
+
     void printGraphSummary() const;
     void saveToFile(const std::string &filename) const;
-    void convertFromTemporalGraph(const std::vector<std::tuple<int, int, double, long>>& edges);
     const std::unordered_map<int, std::unordered_map<int, std::pair<double, int>>>& getAdjacencyList() const {
         return adjacencyList;
     }
+
 
 
 

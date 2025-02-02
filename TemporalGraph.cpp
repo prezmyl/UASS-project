@@ -21,6 +21,24 @@ int TemporalGraph::numEdges() const {
     return edges.size(); // Počítáme skutečný počet uložených hran
 }
 
+double TemporalGraph::averageCallDuration() const {
+    if (edges.empty()) return 0.0;
+    double totalDuration = 0;
+    for (const auto& edge : edges) {
+        totalDuration += std::get<2>(edge); // Váha představuje délku hovoru
+    }
+    return totalDuration / edges.size();
+}
+
+double TemporalGraph::averageActivity() const {
+    if (adjacencyList.empty()) return 0.0;
+    double totalActivity = 0;
+    for (const auto& [node, neighbors] : adjacencyList) {
+        totalActivity += neighbors.size();
+    }
+    return totalActivity / adjacencyList.size();
+}
+
 
 Graph TemporalGraph::convertToStaticGraph() const {
     Graph staticGraph;
@@ -101,6 +119,32 @@ void TemporalGraph::printTemporalGraphSummary() const {
 
 
 }
+
+void TemporalGraph::analyzeTemporalProperties(std::ostream& out1, std::ostream& out2) const {
+    Utils::writeOutput(out1, out2, "⏳ Temporal Network Properties:");
+    Utils::writeOutput(out1, out2, " - Time range: " + std::to_string(timeRangeStart) + " - " + std::to_string(timeRangeEnd));
+    Utils::writeOutput(out1, out2, " - Avg call duration: " + std::to_string(averageCallDuration()));
+    Utils::writeOutput(out1, out2, " - Avg activity per node: " + std::to_string(averageActivity()));
+}
+
+
+void TemporalGraph::analyzeSnapshots(const std::string& dir, long snapshotInterval) const {
+    for (long start = timeRangeStart; start < timeRangeEnd; start += snapshotInterval) {
+        long end = start + snapshotInterval;
+        Graph snapshot = getSnapshot(start, end);
+
+        std::string snapshotFilename = dir + "/snapshot_" + std::to_string(start) + "_" + std::to_string(end) + ".txt";
+        snapshot.saveToFile(snapshotFilename);
+
+        std::ofstream metricsFile(dir + "/snapshot_" + std::to_string(start) + "_" + std::to_string(end) + "_metrics.txt");
+        snapshot.analyzeGraph("Snapshot " + std::to_string(start) + " - " + std::to_string(end), std::cout, metricsFile);
+        metricsFile.close();
+    }
+    Utils::writeOutput(std::cout, std::cout, "✅ Snapshot metrics saved to " + dir);
+}
+
+
+
 
 void TemporalGraph::saveToFile(const std::string &filename) const {
     std::ofstream outFile(filename);
