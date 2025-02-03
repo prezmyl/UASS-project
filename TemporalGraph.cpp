@@ -6,6 +6,7 @@
 
 #include <limits.h>
 #include <sys/stat.h>  // Pro mkdir()
+#include <filesystem>
 
 TemporalGraph::TemporalGraph() : timeRangeStart(LONG_MAX), timeRangeEnd(LONG_MIN){}
 
@@ -137,6 +138,9 @@ void ensureDirectoryExists(const std::string& dir) {
 }
 
 void TemporalGraph::analyzeSnapshots(const std::string& dir, long snapshotInterval) const {
+    if (!std::filesystem::exists(dir)) {
+        std::filesystem::create_directories(dir);
+    }
     for (long start = timeRangeStart; start < timeRangeEnd; start += snapshotInterval) {
         long end = start + snapshotInterval;
         Graph snapshot = getSnapshot(start, end);
