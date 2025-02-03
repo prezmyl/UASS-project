@@ -47,13 +47,16 @@ public:
 
     std::vector<int> findTopHubs(int topN) const;
 
-    void analyzeGraph(const std::string &name, std::ostream &out1, std::ostream &out2) const;
+    void analyzeGraph(const std::string &name, std::ostream &out1, std::ostream &out2, const std::string &outputFilename) const;
 
     void printGraphSummary() const;
     void saveToFile(const std::string &filename) const;
+    void saveNodeDegrees(const std::string& filename) const;
+
     const std::unordered_map<int, std::unordered_map<int, std::pair<double, int>>>& getAdjacencyList() const {
         return adjacencyList;
     }
+
 
 
 

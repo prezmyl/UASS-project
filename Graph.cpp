@@ -187,7 +187,7 @@ std::vector<int> Graph::findTopHubs(int topN) const {
 }
 
 
-void Graph::analyzeGraph(const std::string& name, std::ostream& out1, std::ostream& out2) const {
+void Graph::analyzeGraph(const std::string& name, std::ostream& out1, std::ostream& out2, const std::string& filename) const {
     Utils::writeOutput(out1, out2, "📊 " + name + " Summary:");
     Utils::writeOutput(out1, out2, " - Nodes: " + std::to_string(numNodes()));
     Utils::writeOutput(out1, out2, " - Edges: " + std::to_string(numEdges()));
@@ -207,9 +207,26 @@ void Graph::analyzeGraph(const std::string& name, std::ostream& out1, std::ostre
     for (const auto& [degree, count] : degreeDistribution()) {
         Utils::writeOutput(out1, out2, "  " + std::to_string(degree) + " -> " + std::to_string(count));
     }
+
+    saveNodeDegrees(filename + "_node_degrees.txt");
     Utils::writeOutput(out1, out2, "----------------------------------");
 }
 
+void Graph::saveNodeDegrees(const std::string& filename) const {
+    std::ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        std::cerr << "❌ Error: Unable to open file " << filename << std::endl;
+        return;
+    }
+
+    outFile << "# Node Degree List\n";
+    for (const auto& [node, neighbors] : adjacencyList) {
+        outFile << node << " " << neighbors.size() << "\n";
+    }
+
+    outFile.close();
+    std::cout << "✅ Node degrees saved to " << filename << std::endl;
+}
 
 
 

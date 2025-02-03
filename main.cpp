@@ -16,13 +16,13 @@ int main() {
     std::ofstream temporalFile("temporal_metrics.txt", std::ios::app);
 
     Graph bioGraph = GraphLoader::loadStaticGraph("bio-SC-LC.edges");
-    bioGraph.analyzeGraph("Biological Network", std::cout, bioFile);
+    bioGraph.analyzeGraph("Biological Network", std::cout, bioFile, "bio_graph" );
     bioGraph.saveToFile("bio_graph.txt");
     bioFile.close();
 
     TemporalGraph temporalGraph = GraphLoader::loadTemporalGraph("ia-reality-call.edges");
     temporalGraph.analyzeTemporalProperties(std::cout, temporalFile);
-    temporalGraph.analyzeGraph("Temporal Network", std::cout, temporalFile);
+    temporalGraph.analyzeGraph("Temporal Network", std::cout, temporalFile, "temporal_graph");
     temporalGraph.analyzeSnapshots("snapshots", Constants::snapInterval);
     temporalGraph.saveToFile("temporal_graph.txt");
     temporalFile.close();
