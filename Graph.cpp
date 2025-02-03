@@ -164,7 +164,7 @@ int Graph::mostActiveNode() const {
     return maxNode;
 }
 
-std::vector<int> Graph::findTopHubs(int topN) const {
+std::vector<std::pair<int, int>> Graph::findTopHubs(int topN) const {
     std::vector<std::pair<int, int>> degreeList;
 
     // Vytvoření seznamu (uzel, stupeň)
@@ -178,39 +178,43 @@ std::vector<int> Graph::findTopHubs(int topN) const {
     });
 
     // Vybereme prvních N hubů
-    std::vector<int> topHubs;
-    for (int i = 0; i < std::min(topN, static_cast<int>(degreeList.size())); ++i) {
-        topHubs.push_back(degreeList[i].first);
-    }
+    degreeList.resize(std::min(topN, static_cast<int>(degreeList.size())));
 
-    return topHubs;
+    return degreeList;
 }
 
 
-void Graph::analyzeGraph(const std::string& name, std::ostream& out1, std::ostream& out2, const std::string& filename) const {
-    Utils::writeOutput(out1, out2, "📊 " + name + " Summary:");
-    Utils::writeOutput(out1, out2, " - Nodes: " + std::to_string(numNodes()));
-    Utils::writeOutput(out1, out2, " - Edges: " + std::to_string(numEdges()));
-    Utils::writeOutput(out1, out2, " - Density: " + std::to_string(density()));
-    Utils::writeOutput(out1, out2, " - Avg Degree: " + std::to_string(averageDegree()));
-    Utils::writeOutput(out1, out2, " - Clustering: " + std::to_string(clusteringCoefficient()));
-    Utils::writeOutput(out1, out2, " - Triangles: " + std::to_string(triangleCount()));
-    Utils::writeOutput(out1, out2, " - Most active node: " + std::to_string(mostActiveNode()));
 
-    std::vector<int> topHubs = findTopHubs(20);
-    Utils::writeOutput(out1, out2, " - Top 20 Hubs:");
-    for (int hub : topHubs) {
-        Utils::writeOutput(out1, out2, "   - Node " + std::to_string(hub) + " with degree " + std::to_string(adjacencyList.at(hub).size()));
+void Graph::analyzeGraph(const std::string& name, std::ostream& out1, std::ostream& out2) const {
+    Utils::writeOutput(out1, out2, name);
+
+    Utils::writeOutput(out1, out2, "Nodes," + std::to_string(numNodes()));
+    Utils::writeOutput(out1, out2, "Edges," + std::to_string(numEdges()));
+    Utils::writeOutput(out1, out2, "Density," + std::to_string(density()));
+    Utils::writeOutput(out1, out2, "Avg Degree," + std::to_string(averageDegree()));
+    Utils::writeOutput(out1, out2, "Clustering," + std::to_string(clusteringCoefficient()));
+    Utils::writeOutput(out1, out2, "Triangles," + std::to_string(triangleCount()));
+    Utils::writeOutput(out1, out2, "Most active node," + std::to_string(mostActiveNode()));
+
+    Utils::writeOutput(out1, out2, "Top Hubs");
+    auto hubs = findTopHubs(10);
+    for (const auto& [node, degree] : hubs) {
+        Utils::writeOutput(out1, out2, std::to_string(node) + "," + std::to_string(degree));
     }
 
-    Utils::writeOutput(out1, out2, "Degree distribution:");
+    Utils::writeOutput(out1, out2, "Degree Distribution");
     for (const auto& [degree, count] : degreeDistribution()) {
-        Utils::writeOutput(out1, out2, "  " + std::to_string(degree) + " -> " + std::to_string(count));
+        Utils::writeOutput(out1, out2, std::to_string(degree) + "," + std::to_string(count));
     }
 
-    saveNodeDegrees(filename + "_node_degrees.txt");
     Utils::writeOutput(out1, out2, "----------------------------------");
 }
+
+
+
+
+
+
 
 void Graph::saveNodeDegrees(const std::string& filename) const {
     std::ofstream outFile(filename);
@@ -219,14 +223,15 @@ void Graph::saveNodeDegrees(const std::string& filename) const {
         return;
     }
 
-    outFile << "# Node Degree List\n";
     for (const auto& [node, neighbors] : adjacencyList) {
-        outFile << node << " " << neighbors.size() << "\n";
+        int degree = neighbors.size();
+        outFile << node << "," << degree << "\n";  // CSV-like zápis
     }
 
     outFile.close();
     std::cout << "✅ Node degrees saved to " << filename << std::endl;
 }
+
 
 
 

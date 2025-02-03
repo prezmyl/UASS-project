@@ -138,24 +138,34 @@ void ensureDirectoryExists(const std::string& dir) {
 }
 
 void TemporalGraph::analyzeSnapshots(const std::string& dir, long snapshotInterval) const {
-    if (!std::filesystem::exists(dir)) {
-        std::filesystem::create_directories(dir);
-    }
     for (long start = timeRangeStart; start < timeRangeEnd; start += snapshotInterval) {
         long end = start + snapshotInterval;
         Graph snapshot = getSnapshot(start, end);
 
-        // Uložení snapshotu do souboru
-        std::string snapshotFilename = dir + "/snapshot_" + std::to_string(start) + "_" + std::to_string(end);
-        snapshot.saveToFile(snapshotFilename + ".txt");
+        std::string baseName = dir + "/snapshot_" + std::to_string(start) + "_" + std::to_string(end);
 
-        // Výpis + uložení metrik, nyní včetně node degree
-        std::ofstream metricsFile(snapshotFilename + "_metrics.txt");
-        snapshot.analyzeGraph("Snapshot " + std::to_string(start) + " - " + std::to_string(end), std::cout, metricsFile, snapshotFilename);
+        // Uložíme předzpracovaná data pro snapshot
+        snapshot.saveToFile(baseName + ".txt");
+
+        // Uložíme stupně vrcholů
+        snapshot.saveNodeDegrees(baseName + "_node_degrees.txt");
+
+        // Uložíme metriky pro snapshot
+        std::ofstream metricsFile(baseName + "_metrics.txt");
+        if (!metricsFile.is_open()) {
+            std::cerr << "❌ Error: Unable to open file " << baseName + "_metrics.txt" << " for writing." << std::endl;
+            continue;
+        }
+
+        snapshot.analyzeGraph("Snapshot " + std::to_string(start) + " - " + std::to_string(end),
+                              std::cout, metricsFile);
         metricsFile.close();
     }
-    Utils::writeOutput(std::cout, std::cout, "✅ Snapshot metrics saved to " + dir);
+
+    std::cout << "✅ Snapshot metrics and data saved to " << dir << std::endl;
 }
+
+
 
 
 
